@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "preserveConstEnums": true
+    },
+    "files": [
+        "typings/browser.d.ts"
+    ],
+    "filesGlob": [
+        "assets/*.ts"
+    ]
+}

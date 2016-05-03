@@ -1,0 +1,12 @@
+{
+  "name": "transportation-fee",
+  "version": "0.0.0",
+  "devDependencies": {
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typings": "typings install"
+  }
+}
