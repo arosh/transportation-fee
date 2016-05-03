@@ -1,19 +1,19 @@
 var Controller = (function () {
     function Controller() {
-        this.transportationFee = 9830;
-        this.expressFee = 5290;
+        this.transportationFee = '' + 9830;
+        this.expressFee = '' + 5290;
         this.buyTwoWay = true;
     }
     Controller.prototype.formula = function () {
-        var result = this.transportationFee.toString();
+        var result = this.transportationFee;
         if (this.twoWayDiscount) {
             result += " * 0.9";
         }
         if (this.studentDiscount) {
             result += " * 0.8";
         }
-        if (this.expressFee > 0) {
-            result += " + " + this.expressFee.toString();
+        if (parseInt(this.expressFee, 10) > 0) {
+            result += " + " + this.expressFee;
         }
         result = "floor10(" + result + ")";
         if (this.buyTwoWay) {
@@ -22,14 +22,15 @@ var Controller = (function () {
         return result;
     };
     Controller.prototype.result = function () {
-        var result = this.transportationFee;
+        var result = parseInt(this.transportationFee, 10);
         if (this.twoWayDiscount) {
             result *= 0.9;
         }
         if (this.studentDiscount) {
             result *= 0.8;
         }
-        result += this.expressFee;
+        result += parseInt(this.expressFee, 10);
+        console.log(result);
         result = this.floor10(result);
         if (this.buyTwoWay) {
             result *= 2;
