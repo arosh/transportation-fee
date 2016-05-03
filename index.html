@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-ng-app="App">
 
 <head>
     <meta charset="UTF-8">
@@ -24,42 +24,50 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" data-ng-controller="Controller as c">
+
         <h1 style="text-align: center;">交通費の計算</h1>
-        <from class="form-inline">
-            <div class="form-group">
+
+        <form name="form" novalidate>
+            <div class="form-group" data-ng-class="{'has-error':form.transportationFee.$invalid && !form.transportationFee.$pristine}">
                 <label>運賃（円）</label>
-                <input type="text" class="form-control">
+                <input type="text" name="transportationFee" class="form-control" data-ng-model="c.transportationFee" required pattern="\d+">
             </div>
-            <div class="form-group">
+            <div class="form-group" data-ng-class="{'has-error':form.expressFee.$invalid && !form.expressFee.$pristine}">
                 <label>特急料金（円）</label>
-                <input type="text" class="form-control">
+                <input type="text" name="expressFee" class="form-control" data-ng-model="c.expressFee" required pattern="\d+">
             </div>
             <div class="checkbox">
-                <label><input type="checkbox">往復切符を買う</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox">学割を使う</label>
-                <ul>
-                    <label><input type="checkbox">片道101km以上である</label>
-                    <div class="clearfix"></div>
-                    <label><input type="checkbox">乗車券の有効日数について確認した<br>（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</label>
-                    <div class="clearfix"></div>
-                    <label><input type="checkbox">大都市近郊区間について確認した<br>（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02b.html#5">特定区間の運賃計算｜きっぷのルール：JRおでかけネット</a>）</label>
-                </ul>
+                <label><input type="checkbox" data-ng-model="c.buyTwoWay" data-ng-change="c.buyTwoWayChange()">往復切符を買う</label>
             </div>
 
-            <div class="checkbox">
-                <label><input type="checkbox">往復割を使う</label>
-                <ul>
-                    <label><input type="checkbox">片道601km以上である</label>
-                    <div class="clearfix"></div>
-                    <label><input type="checkbox">乗車券の有効日数について確認した<br>（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</label>
+            <ul style="list-style-type: none;">
+                <li>
+                    <div data-ng-show="c.buyTwoWay" class="checkbox" data-ng-class="{'has-error':c.twoWayDiscount && !(c.twoWayDiscountCheck1 && c.twoWayDiscountCheck2)}">
+                        <label><input type="checkbox" data-ng-model="c.twoWayDiscount">往復割を使う</label>
+                        <ul data-ng-show="c.twoWayDiscount" style="list-style-type: none;">
+                            <li><label><input type="checkbox" data-ng-model="c.twoWayDiscountCheck1">片道601km以上である</label></li>
+                            <li><label><input type="checkbox" data-ng-model="c.twoWayDiscountCheck2">乗車券の有効日数について確認した<br>（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</label></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="checkbox" data-ng-class="{'has-error':c.studentDiscount && !(c.studentDiscountCheck1 && c.studentDiscountCheck2 && c.studentDiscountCheck3)}">
+                <label><input type="checkbox" data-ng-model="c.studentDiscount">学割を使う</label>
+                <ul data-ng-show="c.studentDiscount" style="list-style-type: none;">
+                    <li><label><input type="checkbox" data-ng-model="c.studentDiscountCheck1">片道101km以上である</label></li>
+                    <li><label><input type="checkbox" data-ng-model="c.studentDiscountCheck2">乗車券の有効日数について確認した<br>（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</label></li>
+                    <li><label><input type="checkbox" data-ng-model="c.studentDiscountCheck3">大都市近郊区間について確認した<br>（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02b.html#5">特定区間の運賃計算｜きっぷのルール：JRおでかけネット</a>）</label></li>
                 </ul>
             </div>
-        </from>
-        <b>結果</b>
+        </form>
+        <div class="alert alert-warning" role="alert" data-ng-show="(c.twoWayDiscount && !(c.twoWayDiscountCheck1 && c.twoWayDiscountCheck2)) || (c.studentDiscount && !(c.studentDiscountCheck1 && c.studentDiscountCheck2 && c.studentDiscountCheck3))">チェックボックスを確認してください</div>
+        <b>結果</b> {{c.formula()}} = {{c.result() | currency:'&yen;':0}}
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.5/angular-locale_ja-jp.min.js"></script>
+    <script src="assets/index.js"></script>
 </body>
 
 </html>

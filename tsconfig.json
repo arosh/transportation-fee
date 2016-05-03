@@ -1,12 +1,11 @@
 {
     "compilerOptions": {
+        "removeComments": true,
         "noImplicitAny": true,
         "preserveConstEnums": true
     },
     "files": [
-        "typings/browser.d.ts"
-    ],
-    "filesGlob": [
-        "assets/*.ts"
+        "typings/browser.d.ts",
+        "assets/index.ts"
     ]
 }
