@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>交通費の計算</title>
     <link rel="stylesheet" href="assets/bootstrap-honoka.min.css">
+    <style>
+        .container {
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+    </style>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -18,7 +24,42 @@
 </head>
 
 <body>
-    
+    <div class="container">
+        <h1 style="text-align: center;">交通費の計算</h1>
+        <from class="form-inline">
+            <div class="form-group">
+                <label>運賃（円）</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>特急料金（円）</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox">往復切符を買う</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox">学割を使う</label>
+                <ul>
+                    <label><input type="checkbox">片道101km以上である</label>
+                    <div class="clearfix"></div>
+                    <label><input type="checkbox">乗車券の有効日数について確認した<br>（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</label>
+                    <div class="clearfix"></div>
+                    <label><input type="checkbox">大都市近郊区間について確認した<br>（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02b.html#5">特定区間の運賃計算｜きっぷのルール：JRおでかけネット</a>）</label>
+                </ul>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox">往復割を使う</label>
+                <ul>
+                    <label><input type="checkbox">片道601km以上である</label>
+                    <div class="clearfix"></div>
+                    <label><input type="checkbox">乗車券の有効日数について確認した<br>（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</label>
+                </ul>
+            </div>
+        </from>
+        <b>結果</b>
+    </div>
 </body>
 
 </html>
