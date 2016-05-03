@@ -38,7 +38,6 @@ class Controller {
             result *= 0.8;
         }
         result += parseInt(this.expressFee, 10);
-        console.log(result);
         result = this.floor10(result);
         if (this.buyTwoWay) {
             result *= 2;
