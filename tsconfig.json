@@ -2,6 +2,7 @@
     "compilerOptions": {
         "removeComments": true,
         "noImplicitAny": true,
+        "noImplicitReturns": true,
         "preserveConstEnums": true
     },
     "files": [
