@@ -5,6 +5,13 @@ class Controller {
     studentDiscount: boolean;
     twoWayDiscount: boolean;
 
+    twoWayDiscountCheck1: boolean;
+    twoWayDiscountCheck2: boolean;
+
+    studentDiscountCheck1: boolean;
+    studentDiscountCheck2: boolean;
+    studentDiscountCheck3: boolean;
+
     constructor() {
         this.transportationFee = '' + 9830;
         this.expressFee = '' + 5290;
@@ -53,6 +60,14 @@ class Controller {
 
     private floor10(value: number): number {
         return Math.floor(value / 10) * 10;
+    }
+
+    isTwoWayDiscountInvalid(): boolean {
+        return this.twoWayDiscount && !(this.twoWayDiscountCheck1 && this.twoWayDiscountCheck2);
+    }
+
+    isStudentDiscountInvalid(): boolean {
+        return this.studentDiscount && !(this.studentDiscountCheck1 && this.studentDiscountCheck2 && this.studentDiscountCheck3)
     }
 }
 

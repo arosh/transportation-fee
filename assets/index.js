@@ -44,6 +44,12 @@ var Controller = (function () {
     Controller.prototype.floor10 = function (value) {
         return Math.floor(value / 10) * 10;
     };
+    Controller.prototype.isTwoWayDiscountInvalid = function () {
+        return this.twoWayDiscount && !(this.twoWayDiscountCheck1 && this.twoWayDiscountCheck2);
+    };
+    Controller.prototype.isStudentDiscountInvalid = function () {
+        return this.studentDiscount && !(this.studentDiscountCheck1 && this.studentDiscountCheck2 && this.studentDiscountCheck3);
+    };
     return Controller;
 }());
 var App = angular.module('App', []);

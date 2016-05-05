@@ -43,7 +43,7 @@
 
             <ul style="list-style-type: none;">
                 <li>
-                    <div data-ng-show="c.buyTwoWay" class="checkbox" data-ng-class="{'has-error':c.twoWayDiscount && !(c.twoWayDiscountCheck1 && c.twoWayDiscountCheck2)}">
+                    <div data-ng-show="c.buyTwoWay" class="checkbox" data-ng-class="{'has-error':c.isTwoWayDiscountInvalid()}">
                         <label><input type="checkbox" data-ng-model="c.twoWayDiscount">往復割を使う</label>
                         <ul data-ng-show="c.twoWayDiscount" style="list-style-type: none;">
                             <li><label><input type="checkbox" data-ng-model="c.twoWayDiscountCheck1">片道601km以上である</label></li>
@@ -53,7 +53,7 @@
                 </li>
             </ul>
 
-            <div class="checkbox" data-ng-class="{'has-error':c.studentDiscount && !(c.studentDiscountCheck1 && c.studentDiscountCheck2 && c.studentDiscountCheck3)}">
+            <div class="checkbox" data-ng-class="{'has-error':c.isStudentDiscountInvalid()}">
                 <label><input type="checkbox" data-ng-model="c.studentDiscount">学割を使う</label>
                 <ul data-ng-show="c.studentDiscount" style="list-style-type: none;">
                     <li><label><input type="checkbox" data-ng-model="c.studentDiscountCheck1">片道101km以上である</label></li>
@@ -62,7 +62,7 @@
                 </ul>
             </div>
         </form>
-        <div class="alert alert-warning" role="alert" data-ng-show="(c.twoWayDiscount && !(c.twoWayDiscountCheck1 && c.twoWayDiscountCheck2)) || (c.studentDiscount && !(c.studentDiscountCheck1 && c.studentDiscountCheck2 && c.studentDiscountCheck3))">チェックボックスを確認してください</div>
+        <div class="alert alert-warning" role="alert" data-ng-show="c.isTwoWayDiscountInvalid() || c.isStudentDiscountInvalid()">チェックボックスを確認してください</div>
         <b>結果</b> {{c.formula()}} = {{c.result() | currency:'&yen;':0}}
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
