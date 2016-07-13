@@ -1,7 +1,7 @@
 var Controller = (function () {
     function Controller() {
-        this.transportationFee = '' + 9830;
-        this.expressFee = '' + 5290;
+        this.transportationFee = '' + 8750;
+        this.expressFee = '' + 4870;
         this.buyTwoWay = true;
     }
     Controller.prototype.formula = function () {
@@ -45,10 +45,12 @@ var Controller = (function () {
         return Math.floor(value / 10) * 10;
     };
     Controller.prototype.isTwoWayDiscountInvalid = function () {
-        return this.twoWayDiscount && !(this.twoWayDiscountCheck1 && this.twoWayDiscountCheck2);
+        return this.twoWayDiscount &&
+            !(this.twoWayDiscountCheck1 && this.twoWayDiscountCheck2);
     };
     Controller.prototype.isStudentDiscountInvalid = function () {
-        return this.studentDiscount && !(this.studentDiscountCheck1 && this.studentDiscountCheck2 && this.studentDiscountCheck3);
+        return this.studentDiscount &&
+            !(this.studentDiscountCheck1 && this.studentDiscountCheck2 && this.studentDiscountCheck3);
     };
     return Controller;
 }());
