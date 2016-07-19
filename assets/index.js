@@ -1,8 +1,7 @@
 var Controller = (function () {
     function Controller() {
-        this.transportationFee = '' + 8750;
-        this.expressFee = '' + 4870;
-        this.buyTwoWay = true;
+        this.transportationFee = "" + 8750;
+        this.expressFee = "" + 4870;
     }
     Controller.prototype.formula = function () {
         var result = this.transportationFee;
@@ -37,7 +36,7 @@ var Controller = (function () {
         return result;
     };
     Controller.prototype.buyTwoWayChange = function () {
-        if (this.buyTwoWay == false) {
+        if (this.buyTwoWay === false) {
             this.twoWayDiscount = false;
         }
     };
@@ -54,5 +53,5 @@ var Controller = (function () {
     };
     return Controller;
 }());
-var App = angular.module('App', []);
-App.controller('Controller', Controller);
+var App = angular.module("App", []);
+App.controller("Controller", Controller);

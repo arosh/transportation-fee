@@ -13,8 +13,8 @@ class Controller {
     studentDiscountCheck3: boolean;
 
     constructor() {
-        this.transportationFee = '' + 8750;
-        this.expressFee = '' + 4870;
+        this.transportationFee = "" + 8750;
+        this.expressFee = "" + 4870;
     }
 
     formula(): string {
@@ -23,7 +23,7 @@ class Controller {
             result += " * 0.9";
         }
         if (this.studentDiscount) {
-            result += " * 0.8"
+            result += " * 0.8";
         }
         if (parseInt(this.expressFee, 10) > 0) {
             result += " + " + this.expressFee;
@@ -52,7 +52,7 @@ class Controller {
     }
 
     buyTwoWayChange(): void {
-        if (this.buyTwoWay == false) {
+        if (this.buyTwoWay === false) {
             this.twoWayDiscount = false;
         }
     }
@@ -68,9 +68,9 @@ class Controller {
 
     isStudentDiscountInvalid(): boolean {
         return this.studentDiscount &&
-            !(this.studentDiscountCheck1 && this.studentDiscountCheck2 && this.studentDiscountCheck3)
+            !(this.studentDiscountCheck1 && this.studentDiscountCheck2 && this.studentDiscountCheck3);
     }
 }
 
-var App = angular.module('App', []);
-App.controller('Controller', Controller);
+let App = angular.module("App", []);
+App.controller("Controller", Controller);
