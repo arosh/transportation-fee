@@ -10,6 +10,7 @@ const initialState = {
   basic: 8750,
   express: 4870,
   buyTwoWayTicket: true,
+  useStudentDiscount: false,
 };
 
 function reducer(state = initialState, action) {
@@ -26,10 +27,14 @@ function reducer(state = initialState, action) {
         express: value,
       });
     }
-    case 'update/buyTwoWayTicket': {
-      const value = action.value;
+    case 'toggle/buyTwoWayTicket': {
       return Object.assign({}, state, {
-        buyTwoWayTicket: value,
+        buyTwoWayTicket: !state.buyTwoWayTicket,
+      });
+    }
+    case 'toggle/useStudentDiscount': {
+      return Object.assign({}, state, {
+        useStudentDiscount: !state.useStudentDiscount,
       });
     }
     default:

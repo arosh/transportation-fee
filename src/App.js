@@ -13,28 +13,24 @@ const styles = {
 const App = ({ basic, express, handleBasicChange, handleExpressChange }) => (
   <Grid>
     <h1 style={styles.title}>JRの割引計算機</h1>
-    <form>
-      <FormGroup>
-        <ControlLabel>運賃（円）</ControlLabel>
-        <FormControl
-          type="number"
-          value={basic}
-          onChange={handleBasicChange}
-        />
-      </FormGroup>
-      <FormGroup>
-        <ControlLabel>特急料金（円）</ControlLabel>
-        <FormControl
-          type="number"
-          value={express}
-          onChange={handleExpressChange}
-        />
-      </FormGroup>
-
-      <TwoWayDiscount />
-      <StudentDiscount />
-
-    </form>
+    <FormGroup>
+      <ControlLabel>運賃（円）</ControlLabel>
+      <FormControl
+        type="number"
+        value={basic}
+        onChange={handleBasicChange}
+      />
+    </FormGroup>
+    <FormGroup>
+      <ControlLabel>特急料金（円）</ControlLabel>
+      <FormControl
+        type="number"
+        value={express}
+        onChange={handleExpressChange}
+      />
+    </FormGroup>
+    <TwoWayDiscount />
+    <StudentDiscount />
     <Alert bsStyle="warning">チェックボックスを確認してください</Alert>
     <b>結果</b> ???円
   </Grid>
