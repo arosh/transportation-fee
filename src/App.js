@@ -1,5 +1,6 @@
 import React from 'react';
 import { Alert, Grid, FormGroup, ControlLabel, FormControl, Checkbox } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 const styles = {
   title: {
@@ -10,17 +11,25 @@ const styles = {
   },
 };
 
-const App = () => (
+const App = ({ basic, express, handleChangeBasic, handleChangeExpress }) => (
   <Grid>
     <h1 style={styles.title}>JRの割引計算機</h1>
     <form>
       <FormGroup>
         <ControlLabel>運賃（円）</ControlLabel>
-        <FormControl type="text" />
+        <FormControl
+          type="number"
+          value={basic}
+          onChange={handleChangeBasic}
+        />
       </FormGroup>
       <FormGroup>
         <ControlLabel>特急料金（円）</ControlLabel>
-        <FormControl type="text" />
+        <FormControl
+          type="number"
+          value={express}
+          onChange={handleChangeExpress}
+        />
       </FormGroup>
 
       <Checkbox inline>往復切符を買う</Checkbox>
@@ -46,4 +55,30 @@ const App = () => (
   </Grid>
 );
 
-export default App;
+App.propTypes = {
+  basic: React.PropTypes.number.isRequired,
+  express: React.PropTypes.number.isRequired,
+  handleChangeBasic: React.PropTypes.func.isRequired,
+  handleChangeExpress: React.PropTypes.func.isRequired,
+};
+
+function mapStateToProps(state) {
+  return state;
+}
+
+function changeBasic(value) {
+  return { type: 'update/basic', value };
+}
+
+function changeExpress(value) {
+  return { type: 'update/express', value };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    handleChangeBasic: e => dispatch(changeBasic(e.target.value)),
+    handleChangeExpress: e => dispatch(changeExpress(e.target.value)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
