@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert, Grid, FormGroup, ControlLabel, FormControl, Checkbox } from 'react-bootstrap';
 
 const styles = {
   title: {
@@ -10,45 +11,39 @@ const styles = {
 };
 
 const App = () => (
-  <div className="container">
+  <Grid>
     <h1 style={styles.title}>JRの割引計算機</h1>
     <form>
-      <div className="form-group">
-        <label>運賃（円）</label>
-        <input type="text" className="form-control" />
-      </div>
-      <div className="form-group">
-        <label>特急料金（円）</label>
-        <input type="text" className="form-control" />
-      </div>
-      <div className="checkbox">
-        <label><input type="checkbox" />往復切符を買う</label>
-      </div>
+      <FormGroup>
+        <ControlLabel>運賃（円）</ControlLabel>
+        <FormControl type="text" />
+      </FormGroup>
+      <FormGroup>
+        <ControlLabel>特急料金（円）</ControlLabel>
+        <FormControl type="text" />
+      </FormGroup>
 
+      <Checkbox inline>往復切符を買う</Checkbox>
       <ul style={styles.ul}>
-        <li>
-          <div className="checkbox">
-            <label><input type="checkbox" />往復割を使う</label>
-            <ul style={styles.ul}>
-              <li><label><input type="checkbox" />片道601km以上である（東京ー大阪間は不可）</label></li>
-              <li><label><input type="checkbox" />乗車券の有効日数を超える場合は往復切符を買うことができないことを知っている<br />（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</label></li>
-            </ul>
-          </div>
-        </li>
+        <li><Checkbox inline>往復割を使う</Checkbox></li>
+        <ul style={styles.ul}>
+          <li><Checkbox inline>片道601km以上である（東京ー大阪間は不可）</Checkbox></li>
+          <li><Checkbox inline>乗車券の有効日数を超える場合は往復切符を買うことができないことを知っている<br />（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</Checkbox></li>
+        </ul>
       </ul>
 
-      <div className="checkbox">
-        <label><input type="checkbox" />学割を使う</label>
+      <Checkbox inline>学割を使う</Checkbox>
+      <ul style={styles.ul}>
+        <li><Checkbox inline>片道101km以上である</Checkbox></li>
         <ul style={styles.ul}>
-          <li><label><input type="checkbox" />片道101km以上である</label></li>
-          <li><label><input type="checkbox" />乗車券の有効日数を超える場合は往復切符を買うことができないので，往路と復路で学割証が2枚必要なことを知っている<br />（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</label></li>
-          <li><label><input type="checkbox" />大都市近郊区間では往復券は発売当日のみ有効で，日が変わる場合には往路と復路で学割証が2枚必要なことを知っている<br />（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02b.html#5">大都市近郊区間内のみをご利用になる場合の特例｜きっぷのルール：JRおでかけネット</a>）</label></li>
+          <li><Checkbox inline>乗車券の有効日数を超える場合は往復切符を買うことができないので，往路と復路で学割証が2枚必要なことを知っている<br />（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</Checkbox></li>
+          <li><Checkbox inline>大都市近郊区間では往復券は発売当日のみ有効で，日が変わる場合には往路と復路で学割証が2枚必要なことを知っている<br />（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02b.html#5">大都市近郊区間内のみをご利用になる場合の特例｜きっぷのルール：JRおでかけネット</a>）</Checkbox></li>
         </ul>
-      </div>
+      </ul>
     </form>
-    <div className="alert alert-warning">チェックボックスを確認してください</div>
+    <Alert bsStyle="warning">チェックボックスを確認してください</Alert>
     <b>結果</b> ???円
-  </div>
+  </Grid>
 );
 
 export default App;
