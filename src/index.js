@@ -9,6 +9,7 @@ import App from './App';
 const initialState = {
   basic: 8750,
   express: 4870,
+  buyTwoWayTicket: true,
 };
 
 function reducer(state = initialState, action) {
@@ -23,6 +24,12 @@ function reducer(state = initialState, action) {
       const value = Number.parseInt(action.value, 10);
       return Object.assign({}, state, {
         express: value,
+      });
+    }
+    case 'update/buyTwoWayTicket': {
+      const value = action.value;
+      return Object.assign({}, state, {
+        buyTwoWayTicket: value,
       });
     }
     default:

@@ -1,17 +1,16 @@
 import React from 'react';
-import { Alert, Grid, FormGroup, ControlLabel, FormControl, Checkbox } from 'react-bootstrap';
+import { Alert, Grid, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import TwoWayDiscount from './TwoWayDiscount';
+import StudentDiscount from './StudentDiscount';
 
 const styles = {
   title: {
     textAlign: 'center',
   },
-  ul: {
-    listStyleType: 'none',
-  },
 };
 
-const App = ({ basic, express, handleChangeBasic, handleChangeExpress }) => (
+const App = ({ basic, express, handleBasicChange, handleExpressChange }) => (
   <Grid>
     <h1 style={styles.title}>JRの割引計算機</h1>
     <form>
@@ -20,7 +19,7 @@ const App = ({ basic, express, handleChangeBasic, handleChangeExpress }) => (
         <FormControl
           type="number"
           value={basic}
-          onChange={handleChangeBasic}
+          onChange={handleBasicChange}
         />
       </FormGroup>
       <FormGroup>
@@ -28,27 +27,13 @@ const App = ({ basic, express, handleChangeBasic, handleChangeExpress }) => (
         <FormControl
           type="number"
           value={express}
-          onChange={handleChangeExpress}
+          onChange={handleExpressChange}
         />
       </FormGroup>
 
-      <Checkbox inline>往復切符を買う</Checkbox>
-      <ul style={styles.ul}>
-        <li><Checkbox inline>往復割を使う</Checkbox></li>
-        <ul style={styles.ul}>
-          <li><Checkbox inline>片道601km以上である（東京ー大阪間は不可）</Checkbox></li>
-          <li><Checkbox inline>乗車券の有効日数を超える場合は往復切符を買うことができないことを知っている<br />（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</Checkbox></li>
-        </ul>
-      </ul>
+      <TwoWayDiscount />
+      <StudentDiscount />
 
-      <Checkbox inline>学割を使う</Checkbox>
-      <ul style={styles.ul}>
-        <li><Checkbox inline>片道101km以上である</Checkbox></li>
-        <ul style={styles.ul}>
-          <li><Checkbox inline>乗車券の有効日数を超える場合は往復切符を買うことができないので，往路と復路で学割証が2枚必要なことを知っている<br />（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）</Checkbox></li>
-          <li><Checkbox inline>大都市近郊区間では往復券は発売当日のみ有効で，日が変わる場合には往路と復路で学割証が2枚必要なことを知っている<br />（<a href="https://www.jr-odekake.net/railroad/ticket/guide/02b.html#5">大都市近郊区間内のみをご利用になる場合の特例｜きっぷのルール：JRおでかけネット</a>）</Checkbox></li>
-        </ul>
-      </ul>
     </form>
     <Alert bsStyle="warning">チェックボックスを確認してください</Alert>
     <b>結果</b> ???円
@@ -58,26 +43,27 @@ const App = ({ basic, express, handleChangeBasic, handleChangeExpress }) => (
 App.propTypes = {
   basic: React.PropTypes.number.isRequired,
   express: React.PropTypes.number.isRequired,
-  handleChangeBasic: React.PropTypes.func.isRequired,
-  handleChangeExpress: React.PropTypes.func.isRequired,
+  handleBasicChange: React.PropTypes.func.isRequired,
+  handleExpressChange: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
-  return state;
+  const { basic, express } = state;
+  return { basic, express };
 }
 
-function changeBasic(value) {
+function updateBasic(value) {
   return { type: 'update/basic', value };
 }
 
-function changeExpress(value) {
+function updateExpress(value) {
   return { type: 'update/express', value };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleChangeBasic: e => dispatch(changeBasic(e.target.value)),
-    handleChangeExpress: e => dispatch(changeExpress(e.target.value)),
+    handleBasicChange: e => dispatch(updateBasic(e.target.value)),
+    handleExpressChange: e => dispatch(updateExpress(e.target.value)),
   };
 }
 
