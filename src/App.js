@@ -18,7 +18,7 @@ const App = ({ basic, express, handleBasicChange, handleExpressChange }) => (
       <FormControl
         type="number"
         value={basic}
-        onChange={handleBasicChange}
+        onChange={e => handleBasicChange(e.target.value)}
       />
     </FormGroup>
     <FormGroup>
@@ -26,7 +26,7 @@ const App = ({ basic, express, handleBasicChange, handleExpressChange }) => (
       <FormControl
         type="number"
         value={express}
-        onChange={handleExpressChange}
+        onChange={e => handleExpressChange(e.target.value)}
       />
     </FormGroup>
     <TwoWayDiscount />
@@ -58,8 +58,8 @@ function updateExpress(value) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleBasicChange: e => dispatch(updateBasic(e.target.value)),
-    handleExpressChange: e => dispatch(updateExpress(e.target.value)),
+    handleBasicChange: value => dispatch(updateBasic(value)),
+    handleExpressChange: value => dispatch(updateExpress(value)),
   };
 }
 

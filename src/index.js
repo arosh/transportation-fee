@@ -10,6 +10,7 @@ const initialState = {
   basic: 8750,
   express: 4870,
   buyTwoWayTicket: true,
+  useTwoWayDiscount: false,
   useStudentDiscount: false,
 };
 
@@ -28,8 +29,19 @@ function reducer(state = initialState, action) {
       });
     }
     case 'toggle/buyTwoWayTicket': {
+      const twoWay = !state.buyTwoWayTicket;
+      let discount = state.useTwoWayDiscount;
+      if (!twoWay) {
+        discount = false;
+      }
       return Object.assign({}, state, {
-        buyTwoWayTicket: !state.buyTwoWayTicket,
+        buyTwoWayTicket: twoWay,
+        useTwoWayDiscount: discount,
+      });
+    }
+    case 'toggle/useTwoWayDiscount': {
+      return Object.assign({}, state, {
+        useTwoWayDiscount: !state.useTwoWayDiscount,
       });
     }
     case 'toggle/useStudentDiscount': {

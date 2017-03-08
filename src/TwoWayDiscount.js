@@ -8,17 +8,28 @@ const styles = {
   },
 };
 
-const TwoWayDiscount = ({ buyTwoWayTicket, handleBuyChange }) => (
-  <div>
-    <Checkbox
-      checked={buyTwoWayTicket}
-      onChange={handleBuyChange}
-    >
-      往復切符を買う
-    </Checkbox>
-    {buyTwoWayTicket &&
+const TwoWayDiscount = ({
+  buyTwoWayTicket,
+  useTwoWayDiscount,
+  handleBuyChange,
+  handleUseDiscountChange,
+  }) => (
+    <div>
+      <Checkbox
+        checked={buyTwoWayTicket}
+        onChange={handleBuyChange}
+      >
+        往復切符を買う
+      </Checkbox>
+      {buyTwoWayTicket &&
       <ul style={styles.ul}>
-        <li><Checkbox inline>往復割を使う</Checkbox></li>
+        <li><Checkbox
+          inline
+          checked={useTwoWayDiscount}
+          onChange={handleUseDiscountChange}
+        >
+            往復割を使う
+          </Checkbox></li>
         <ul style={styles.ul}>
           <li><Checkbox inline>片道601km以上である（東京ー大阪間は不可）</Checkbox></li>
           <li><Checkbox inline>
@@ -28,18 +39,21 @@ const TwoWayDiscount = ({ buyTwoWayTicket, handleBuyChange }) => (
           </Checkbox></li>
         </ul>
       </ul>}
-  </div>
+    </div>
 );
 
 TwoWayDiscount.propTypes = {
   buyTwoWayTicket: React.PropTypes.bool.isRequired,
+  useTwoWayDiscount: React.PropTypes.bool.isRequired,
   handleBuyChange: React.PropTypes.func.isRequired,
+  handleUseDiscountChange: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
-  const { buyTwoWayTicket } = state;
+  const { buyTwoWayTicket, useTwoWayDiscount } = state;
   return {
     buyTwoWayTicket,
+    useTwoWayDiscount,
   };
 }
 
@@ -47,9 +61,14 @@ function toggleBuyTwoWayTicket() {
   return { type: 'toggle/buyTwoWayTicket' };
 }
 
+function toggleUseTwoWayDiscount() {
+  return { type: 'toggle/useTwoWayDiscount' };
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     handleBuyChange: () => dispatch(toggleBuyTwoWayTicket()),
+    handleUseDiscountChange: () => dispatch(toggleUseTwoWayDiscount()),
   };
 }
 
