@@ -8,15 +8,15 @@ const styles = {
   },
 };
 
-const StudentDiscount = ({ useStudentDiscount, handleUseChange }) => (
+const StudentDiscount = ({ useDiscount, handleUseChange }) => (
   <div>
     <Checkbox
-      checked={useStudentDiscount}
+      checked={useDiscount}
       onChange={handleUseChange}
     >
       学割を使う
     </Checkbox>
-    {useStudentDiscount &&
+    {useDiscount &&
       <ul style={styles.ul}>
         <li><Checkbox inline>片道101km以上である</Checkbox></li>
         <li><Checkbox inline>
@@ -32,13 +32,14 @@ const StudentDiscount = ({ useStudentDiscount, handleUseChange }) => (
 );
 
 StudentDiscount.propTypes = {
-  useStudentDiscount: React.PropTypes.bool.isRequired,
+  useDiscount: React.PropTypes.bool.isRequired,
   handleUseChange: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
-  const { useStudentDiscount } = state;
-  return { useStudentDiscount };
+  return {
+    useDiscount: state.studentDiscount.use,
+  };
 }
 
 function toggleUseStudentDiscount() {

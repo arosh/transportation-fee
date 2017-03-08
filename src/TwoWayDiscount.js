@@ -10,7 +10,7 @@ const styles = {
 
 const TwoWayDiscount = ({
   buyTwoWayTicket,
-  useTwoWayDiscount,
+  useDiscount,
   handleBuyChange,
   handleUseDiscountChange,
   }) => (
@@ -25,7 +25,7 @@ const TwoWayDiscount = ({
       <ul style={styles.ul}>
         <li><Checkbox
           inline
-          checked={useTwoWayDiscount}
+          checked={useDiscount}
           onChange={handleUseDiscountChange}
         >
             往復割を使う
@@ -44,16 +44,15 @@ const TwoWayDiscount = ({
 
 TwoWayDiscount.propTypes = {
   buyTwoWayTicket: React.PropTypes.bool.isRequired,
-  useTwoWayDiscount: React.PropTypes.bool.isRequired,
+  useDiscount: React.PropTypes.bool.isRequired,
   handleBuyChange: React.PropTypes.func.isRequired,
   handleUseDiscountChange: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
-  const { buyTwoWayTicket, useTwoWayDiscount } = state;
   return {
-    buyTwoWayTicket,
-    useTwoWayDiscount,
+    buyTwoWayTicket: state.buyTwoWayTicket,
+    useDiscount: state.twoWayDiscount.use,
   };
 }
 

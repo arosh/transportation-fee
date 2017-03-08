@@ -10,8 +10,12 @@ const initialState = {
   basic: 8750,
   express: 4870,
   buyTwoWayTicket: true,
-  useTwoWayDiscount: false,
-  useStudentDiscount: false,
+  twoWayDiscount: {
+    use: false,
+  },
+  studentDiscount: {
+    use: false,
+  },
 };
 
 function reducer(state = initialState, action) {
@@ -30,23 +34,29 @@ function reducer(state = initialState, action) {
     }
     case 'toggle/buyTwoWayTicket': {
       const twoWay = !state.buyTwoWayTicket;
-      let discount = state.useTwoWayDiscount;
+      let discount = state.twoWayDiscount.use;
       if (!twoWay) {
         discount = false;
       }
       return Object.assign({}, state, {
         buyTwoWayTicket: twoWay,
-        useTwoWayDiscount: discount,
+        twoWayDiscount: {
+          use: discount,
+        },
       });
     }
     case 'toggle/useTwoWayDiscount': {
       return Object.assign({}, state, {
-        useTwoWayDiscount: !state.useTwoWayDiscount,
+        twoWayDiscount: {
+          use: !state.twoWayDiscount.use,
+        },
       });
     }
     case 'toggle/useStudentDiscount': {
       return Object.assign({}, state, {
-        useStudentDiscount: !state.useStudentDiscount,
+        studentDiscount: {
+          use: !state.studentDiscount.use,
+        },
       });
     }
     default:
