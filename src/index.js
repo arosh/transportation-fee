@@ -12,6 +12,7 @@ const initialState = {
   buyTwoWayTicket: true,
   twoWayDiscount: {
     use: false,
+    rules: [false, false],
   },
   studentDiscount: {
     use: false,
@@ -40,15 +41,26 @@ function reducer(state = initialState, action) {
       }
       return Object.assign({}, state, {
         buyTwoWayTicket: twoWay,
-        twoWayDiscount: {
+        twoWayDiscount: Object.assign({}, state.twoWayDiscount, {
           use: discount,
-        },
+        }),
       });
     }
     case 'toggle/useTwoWayDiscount': {
+      const o = Object.assign({}, state);
+      o.twoWayDiscount.use = !state.twoWayDiscount.use;
+      return o;
+    }
+    case 'toggle/twoWayDiscountRules': {
+      const { index } = state;
+      const oldRules = state.twoWayDiscount.rules;
+      const newRules = [
+        ...oldRules.slice(0, index),
+        !oldRules[index],
+        ...oldRules.slice(index + 1)];
       return Object.assign({}, state, {
         twoWayDiscount: {
-          use: !state.twoWayDiscount.use,
+          rules: newRules,
         },
       });
     }
