@@ -85,7 +85,7 @@ function mapDispatchToProps(dispatch) {
   return {
     handleBuyChange: () => dispatch(toggleBuyTwoWayTicket()),
     handleUseDiscountChange: () => dispatch(toggleUseTwoWayDiscount()),
-    handleRuleChange: (index) => dispatch(toggleTwoWayDiscountRules(index)),
+    handleRuleChange: index => dispatch(toggleTwoWayDiscountRules(index)),
   };
 }
 
