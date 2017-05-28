@@ -14,7 +14,7 @@
         <input type="checkbox" v-model="buyTwoWayTicket">
         往復切符を買う
       </label>
-      <ul v-if="buyTwoWayTicket">
+      <ul v-show="buyTwoWayTicket">
         <li>
           <label>
             <input type="checkbox" v-model="useTwoWayDiscount">
@@ -22,7 +22,7 @@
               往復割を使う
             </span>
           </label>
-          <ul v-if="useTwoWayDiscount">
+          <ul v-show="useTwoWayDiscount">
             <li>
               <label>
                 <input type="checkbox" v-model="twoWayDiscountCheck1">
@@ -51,7 +51,7 @@
           学割を使う
         </span>
       </label>
-      <ul v-if="useStudentDiscount">
+      <ul v-show="useStudentDiscount">
         <li>
           <label>
             <input type="checkbox" v-model="studentDiscountCheck1">
