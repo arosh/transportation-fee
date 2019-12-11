@@ -36,7 +36,7 @@
                 <input type="checkbox" v-model="twoWayDiscountCheck2">
                 <span :class="{'text-danger': !twoWayDiscountCheck2}">
                   乗車券の有効日数を超える場合は往復切符を買うことができないことを知っている<br>
-                  （<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）
+                  （<a href="https://www.jreast.co.jp/kippu/04.html">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）
                 </span>
               </label>
             </li>
@@ -65,7 +65,7 @@
             <input type="checkbox" v-model="studentDiscountCheck2">
             <span :class="{'text-danger': !studentDiscountCheck2}">
               乗車券の有効日数を超える場合は往復切符を買うことができないので，往路と復路で学割証が2枚必要なことを知っている<br>
-              （<a href="https://www.jr-odekake.net/railroad/ticket/guide/02a.html#1">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）
+              （<a href="https://www.jreast.co.jp/kippu/04.html">乗車券の有効期間｜きっぷのルール：JRおでかけネット</a>）
             </span>
           </label>
         </li>
