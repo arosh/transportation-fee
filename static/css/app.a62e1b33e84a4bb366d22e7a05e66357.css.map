@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/app.vue"],"names":[],"mappings":"AACA,oBACE,iBAAmB,CAErB,oBACE,oBAAsB","file":"static/css/app.a62e1b33e84a4bb366d22e7a05e66357.css","sourcesContent":["\nh1[data-v-52aa5f48] {\n  text-align: center;\n}\nul[data-v-52aa5f48] {\n  list-style-type: none;\n}\n\n\n\n// WEBPACK FOOTER //\n// ./src/app.vue"],"sourceRoot":""}
