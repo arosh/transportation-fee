@@ -91,8 +91,8 @@ import currencyFormatter from 'currency-formatter';
 export default {
   data() {
     return {
-      basicFee: 8750,
-      expressFee: 4870,
+      basicFee: 8910,
+      expressFee: 5810,
       buyTwoWayTicket: true,
       useTwoWayDiscount: false,
       useStudentDiscount: false,
